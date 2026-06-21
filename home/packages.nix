@@ -50,7 +50,6 @@
     cava
     onefetch
     dix
-    nitch
     fortune
   ];
 in {
