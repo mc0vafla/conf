@@ -1,0 +1,67 @@
+workspace "if" {
+    open-on-output "HDMI-A-1"
+}
+workspace "sec" {
+    open-on-output "HDMI-A-1"
+}
+workspace "secm" {
+    open-on-output "eDP-1"
+}
+window-rule {
+	match {}
+	background-effect {
+	    blur true
+	    xray true
+	    saturation 2
+	}
+	default-column-width { proportion 0.7; }
+	opacity 0.8
+    geometry-corner-radius 30
+    clip-to-geometry true
+    draw-border-with-background true
+}
+window-rule {
+    match is-active=true
+    opacity 0.85
+    match is-active=true
+    shadow {
+        on
+        softness 20
+        spread 10
+        color "#ffffff10"
+    }
+    focus-ring {
+        width 4
+        active-color "#ffffff30"
+    }
+}
+window-rule {
+    match app-id="org.prismlauncher.PrismLauncher"
+    default-column-width { proportion 0.4; }
+    open-on-workspace "if"
+}
+window-rule {
+    match at-startup=true app-id="zen"
+    default-column-width { proportion 1.0; }
+    open-on-workspace "if"
+}
+window-rule {
+    match title="(?i)minecraft"
+    default-column-width { proportion 1.0; }
+    open-fullscreen true
+    opacity 1.0
+}
+window-rule {
+    match app-id="org.telegram.desktop"
+    open-on-workspace "sec"
+    default-column-width { proportion 0.5; }
+}
+window-rule {
+    match app-id="vesktop"
+    open-on-workspace "sec"
+    default-column-width { proportion 0.5; }
+}
+window-rule {
+    match app-id="steam"
+    default-column-width { proportion 1.0; }
+}

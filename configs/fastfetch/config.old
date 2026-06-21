@@ -1,0 +1,118 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "source": "/home/mark/heh/kk.png",
+        "type": "kitty",
+        "width": 28,
+        "height": 19,
+        "padding": {
+            "top": 0,
+            "left": 1
+        }
+    },
+    "display": {
+        "separator": "  ",
+        "color": {
+            "keys": "magenta" 
+        },
+        "temp": {
+            "unit": "C"
+        }
+    },
+    "modules": [
+        {
+            "type": "custom",
+            "format": "     ՞•⩊•՞                                                             (gay)",
+            "color": "white"
+        },
+        {
+            "type": "custom",
+            "format": "    └─────┘",
+            "color": "magenta"
+        },
+        "break",
+        {
+            "type": "custom",
+            "format": "NixOS ❤ beloved forever ❤",
+            "key": " ",
+            "keyColor": "green"
+        },
+        {
+            "type": "custom",
+            "format": "✮⋆˙ Unstable branch ˙⋆✮",
+            "key": "󰒋 ",
+            "keyColor": "green"
+        },
+        {
+            "type": "custom",
+            "format": "Niri ˙ᵕ˙ ",
+            "key": " ",
+            "keyColor": "green"
+        },
+        {
+            "type": "custom",
+            "format": "Fish ⋆✴︎˚｡⋆",
+            "key": "󰞷 ",
+            "keyColor": "green"
+        },
+        "break",
+        {
+            "type": "cpu",
+            "key": "󰻠 ",
+            "keyColor": "green",
+            "temp": true,
+        },
+        {
+            "type": "gpu",
+            "key": "󰢮 ",
+            "keyColor": "green",
+            "temp": true,
+            "detectionIndex": 1,
+            "hideType": "discrete"
+        },
+        {
+            "type": "gpu",
+            "key": "󱤓 ",
+            "keyColor": "green",
+            "temp": true,
+            "detectionIndex": 0,
+            "hideType": "integrated"
+        },
+        {
+            "type": "command",
+            "key": "󰍛 ",
+            "keyColor": "green",
+            "text": "free -b | awk '/Mem:/ {used=$3/1048576; total=$2/1048576; p=($3*100/$2); if (used > 1024) { u=used/1024; unitU=\"GiB\" } else { u=used; unitU=\"MiB\" }; if (total > 1024) { t=total/1024; unitT=\"GiB\" } else { t=total; unitT=\"MiB\" }; printf \"%g %s / %g %s \\033[32m(%g%%)\\033[0m\", (int(u*100+0.5)/100), unitU, (int(t*100+0.5)/100), unitT, (int(p*100+0.5)/100)}'",
+            "format": "{}"
+        },
+        {
+            "type": "command",
+            "key": "󰋊 ",
+            "keyColor": "green",
+            "text": "df -B1 / | awk 'NR==2 {used=$3/1024^3; total=$2/1024^3; p=($3*100/$2); printf \"%g GiB / %g GiB \\033[32m(%g%%)\\033[0m\", (int(used*100+0.5)/100), (int(total*100+0.5)/100), (int(p*100+0.5)/100)}'",
+            "format": "{}"
+        },
+        {
+            "type": "command",
+            "key": "󰓡 ",
+            "keyColor": "green",
+            "text": "if [ -f /sys/block/zram0/mm_stat ]; then awk '{compr=$3; if (compr > 1073741824) {val=compr/1073741824; unit=\"GiB\"} else if (compr > 1048576) {val=compr/1048576; unit=\"MiB\"} else {val=compr/1024; unit=\"KiB\"}; printf \"%g %s \\033[32m(zram)\\033[0m\", (int(val*100+0.5)/100), unit}' /sys/block/zram0/mm_stat; else echo \"offline\"; fi",
+            "format": "{}"
+        },
+        "break",
+        {
+            "type": "uptime",
+            "key": "󱎫 ",
+            "keyColor": "green"
+        },
+        {
+            "type": "command",
+            "key": "󱁕 ",
+            "keyColor": "green",
+            "text": "birth_install=$(stat -c %W /); echo \"$((($(date +%s) - birth_install) / 86400)) days\"",
+            "format": "Installed {} days"
+        },
+        "break",
+        "colors"
+    ]
+}

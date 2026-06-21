@@ -1,0 +1,42 @@
+BadOptimizations 
+BetterGrassify 
+Capes 
+Carbon 
+Chat Patches 
+ClearWaterLava 
+Cloth Config v26.1 
+Controlling 
+Dark Loading Screen 
+Debugify 
+DontJoinMyLobby 
+EntityCulling 
+Exordium 
+FPS-Display 
+Fabric API 
+Fabric Language Kotlin 
+FerriteCore 
+Gamma Utils 
+HUD Manager 
+ImmediatelyFast 
+Krypton 
+LambDynamicLights 
+Language Reload 
+Lithium 
+Mod Menu 
+Omnilook 
+Packet Fixer 
+PanicButton 
+Ping View 
+Placeholder API 
+Searchables 
+Simply No Shading 
+Sodium 
+Stfu 
+Stop Unloading My Resourcepacks 
+Visuality 
+WI Zoom 
+Who am I? 
+WorldEdit 
+WorldEditCUI 
+YetAnotherConfigLib 
+quick-pack

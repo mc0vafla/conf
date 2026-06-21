@@ -1,0 +1,54 @@
+[manager]
+cwd = { fg = "#7fbbb3", italic = true }
+hovered         = { fg = "#2b3339", bg = "#a7c080", bold = true }
+preview_hovered = { underline = true }
+selected        = { fg = "#dbbc7f", bg = "#3a4248", bold = true }
+find_keyword  = { fg = "#e67e80", italic = true, underline = true }
+find_position = { fg = "#e69875", bg = "reset", bold = true }
+border_style = { fg = "#4f585e" }
+
+[status]
+separator_open  = ""
+separator_close = ""
+mode_normal = { fg = "#2b3339", bg = "#a7c080", bold = true }
+mode_select = { fg = "#2b3339", bg = "#dbbc7f", bold = true }
+mode_unset  = { fg = "#2b3339", bg = "#e67e80", bold = true }
+progress_label  = { fg = "#d3c6aa", bold = true }
+progress_normal = { fg = "#7fbbb3", bg = "#3a4248" }
+progress_error  = { fg = "#e67e80", bg = "#3a4248" }
+permissions = { fg = "#83c092" }
+
+[preview]
+syntect_theme = ""
+
+[input]
+border   = { fg = "#a7c080" }
+title    = { fg = "#d3c6aa" }
+value    = { fg = "#d3c6aa" }
+selected = { bg = "#3a4248" }
+
+[select]
+border   = { fg = "#7fbbb3" }
+title    = { fg = "#d3c6aa" }
+scrolled = { fg = "#e69875" }
+hovered  = { fg = "#2b3339", bg = "#dbbc7f" }
+
+[completion]
+border   = { fg = "#4f585e" }
+active   = { fg = "#dbbc7f", bg = "#3a4248" }
+inactive = { fg = "#d3c6aa" }
+
+[filetype]
+rules = [
+	{ mime = "application/*zip", fg = "#e69875" },
+	{ mime = "application/x-tar", fg = "#e69875" },
+	{ mime = "application/x-bzip2", fg = "#e69875" },
+	{ mime = "application/x-gzip", fg = "#e69875" },
+	{ mime = "application/x-7z-compressed", fg = "#e69875" },
+	{ mime = "application/x-rar", fg = "#e69875" },
+	{ mime = "text/*", fg = "#d3c6aa" },
+	{ mime = "image/*", fg = "#d39bb6" },
+	{ mime = "video/*", fg = "#d39bb6" },
+	{ mime = "audio/*", fg = "#d39bb6" },
+	{ mime = "application/x-executable", fg = "#a7c080", bold = true }
+]

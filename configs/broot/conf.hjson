@@ -1,0 +1,55 @@
+show_selection_mark: true
+icon_theme: "nerd"
+content_search_max_file_size: "10MB"
+enable_kitty_keyboard: true
+modal: true
+initial_mode: "input"
+ 
+search_modes: {
+    <empty>: "fuzzy name"
+    /: "regex name"
+}
+
+special_paths: {
+    "/media": {
+        list: "never"
+        sum: "never"
+    }
+    "~/.config": { show: "always" }
+    "trav": {
+        show: "always"
+        list: "always"
+        sum: "never"
+    }
+}
+
+lines_before_match_in_preview: 1
+lines_after_match_in_preview: 1
+
+verbs: [
+    {
+        invocation: "edit"
+        key: "enter"
+        execution: "nvim {file}"
+        apply_to: "file"
+        set_working_dir: true
+        leave_broot: false
+    }
+    {
+        invocation: "delete_word"
+        key: "ctrl-backspace"
+        execution: ":input_del_word_left"
+    }
+]
+
+imports: [
+    "verbs.hjson"
+    {
+        luma: ["dark", "unknown"]
+        file: "skins/dark-gruvbox.hjson"
+    }
+    {
+        luma: "light"
+        file: "skins/white.hjson"
+    }
+]

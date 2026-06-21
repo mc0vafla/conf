@@ -1,0 +1,7 @@
+{
+  "showHidden": true,
+  "maxResults": 0,
+  "fileOpener": "thunar",
+  "searchDirectory": "~",
+  "fdCommand": "fd"
+}

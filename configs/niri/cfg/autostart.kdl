@@ -1,0 +1,6 @@
+spawn-at-startup "pcmanfm-qt" "-d"
+spawn-sh-at-startup "env __NV_PRIME_RENDER_OFFLOAD=0 __GLX_VENDOR_LIBRARY_NAME=mesa __VK_LAYER_NV_optimus='' PIPEWIRE_LATENCY='1024/48000' __EGL_VENDOR_LIBRARY_FILENAMES=/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json noctalia-shell"
+spawn-at-startup "zen"
+spawn-at-startup "Telegram"
+spawn-sh-at-startup "vesktop"
+spawn-at-startup "sh" "-c" "echo 'Xcursor.theme: Breeze_Light' | xrdb -merge && echo 'Xcursor.size: 26' | xrdb -merge && xsetroot -cursor_name left_ptr"

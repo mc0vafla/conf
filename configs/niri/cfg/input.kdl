@@ -1,0 +1,17 @@
+input {
+    keyboard {
+        xkb {
+            layout "us,ru"
+        }
+        repeat-delay 400
+    }
+    touchpad {
+        tap
+        natural-scroll
+    }
+    mouse {
+        accel-speed 0.2        
+    }
+    focus-follows-mouse
+    workspace-auto-back-and-forth
+} 

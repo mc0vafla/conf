@@ -1,0 +1,14 @@
+os
+kernel
+uptime
+packages
+memory
+disk
+colors
+label_color=cyan
+separator=─
+shading=.,-~:;=!*#$@
+
+light=top-left
+spin=y 
+size=0.5              (logo scale, e.g. 2.0 for double size)

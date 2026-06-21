@@ -1,0 +1,152 @@
+binds {
+
+    // ─── Applications ───
+    Mod+N                               { spawn "fish" "-c" "flatpak run com.heroicgameslauncher.hgl"; }
+    Alt+I                               { spawn "fish" "-c" "pcmanfm-qt /etc/nixos/configs/"; }
+    Alt+D                               { spawn "fuzzel"; }
+    Mod+R                               { spawn "kitty" "--single-instance" "--instance-group" "main" "fish" "-c" "br"; }
+    Mod+Shift+R                         { spawn "kitty" "--single-instance" "--instance-group" "main" "fish" "-c" "m /home/mark/heh/flakebase.nix"; }
+    Alt+ESCAPE                          { spawn "prismlauncher"; }
+    Mod+5                               { spawn "celluloid"; }
+    Mod+Y                               { spawn "fish" "-c" "pcmanfm-qt /home/mark/.local/share/PrismLauncher/skins"; }
+    Mod+U                               { spawn "baobab"; }
+    Mod+I                               { spawn "kitty" "--single-instance" "--instance-group" "main" "fish" "-c" "micro /etc/nixos/packages.nix"; }
+    Mod+G                               { spawn "transmission-gtk"; }
+    Mod+P                               { spawn "sh" "-c" "flatpak run com.valvesoftware.Steam"; }
+    Mod+O                               { spawn "kitty" "fish" "-c" "cute"; }
+    Mod+J                               { spawn "sh" "-c" "faugus-launcher"; }
+    Mod+Return                          { spawn "kitty" "--single-instance" "--instance-group" "main"; }
+    Mod+Shift+Return                    { spawn "kitty" "--single-instance" "--instance-group" "main"; }
+    Mod+V                               { spawn-sh "noctalia-shell ipc call launcher toggle"; }
+    Mod+X                               { spawn "zen"; }
+    Mod+L                               { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
+    Mod+M                               { spawn-sh "noctalia-shell ipc call sessionMenu toggle"; }
+    Mod+C                               { spawn "helium"; }
+    Mod+Shift+P                         { spawn "fish" "-c" "r2"; }
+    Mod+ESCAPE                          { spawn "fish" "-c" "pcmanfm-qt /home/mark/"; }
+    Mod+E                               { spawn-sh "noctalia-shell ipc call controlCenter toggle"; }
+    Mod+Shift+E                         { spawn "noctalia-shell" "ipc" "call" "settings" "toggle"; }
+    Mod+H                               { spawn "pinta"; }
+    Mod+4                               { spawn "file-roller"; }
+    
+    // ─── Media Controls ───
+    //XF86AudioRaiseVolume              allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume increase"; }
+    //XF86AudioLowerVolume              allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume decrease"; }
+    //XF86AudioMute                     allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume muteOutput"; }
+    //XF86AudioMicMute                  allow-when-locked=true { spawn-sh "noctalia-shell ipc call volume muteInput"; }
+    //XF86AudioNext                     allow-when-locked=true { spawn-sh "noctalia-shell ipc call media next"; }
+    //XF86AudioPrev                     allow-when-locked=true { spawn-sh "noctalia-shell ipc call media previous"; }
+    //XF86AudioPlay                     allow-when-locked=true { spawn-sh "noctalia-shell ipc call media playPause"; }
+    //XF86AudioPause                    allow-when-locked=true { spawn-sh "noctalia-shell ipc call media playPause"; }
+    // ─── Brightness Controls ───
+    //XF86MonBrightnessUp               allow-when-locked=true { spawn-sh "noctalia-shell ipc call brightness increase"; }
+    //XF86MonBrightnessDown             allow-when-locked=true { spawn-sh "noctalia-shell ipc call brightness decrease"; }
+
+    // ─── Window Movement and Focus ───
+    Mod+Q                               { close-window; }
+    Mod+A                               { focus-column-left; }
+    // Mod+H                            { focus-column-left; }
+    Mod+D                               { focus-column-right; }
+    // Mod+P                            { focus-column-right; }
+    Mod+Shift+W                         { focus-window-up; }
+    Mod+Shift+S                         { focus-window-down; }
+    Mod+Shift+CTRL+W                    { move-window-up; }
+    Mod+Shift+CTRL+S                    { move-window-down; }
+    Mod+CTRL+A                          { move-column-left; }
+    // Mod+CTRL+H                       { move-column-left; }
+    Mod+CTRL+D                          { move-column-right; }
+    // Mod+CTRL+L                       { move-column-right; }
+    //Mod+ALT+a                         { focus-column-first; }
+    //Mod+ALT+d                         { focus-column-last; }
+    //Mod+ALT+CTRL+a                    { move-column-to-first; }
+    //Mod+ALT+CTRL+d                    { move-column-to-last; }
+    Mod+1                               { focus-monitor-left; }
+    Mod+2                               { focus-monitor-right; }
+    Mod+Ctrl+1                          { move-column-to-monitor-left; }
+    Mod+Ctrl+2                          { move-column-to-monitor-right; }
+    // Mod+ALT+D                        { expel-window-from-column; }
+    Mod+Shift+A                         { consume-or-expel-window-left; }
+    Mod+Shift+D                         { consume-or-expel-window-right; }
+    // Mod+ALT+WheelScrollDown          { consume-or-expel-window-right; }
+    // Mod+ALT+WheelScrollUp            { consume-or-expel-window-left; }
+
+    //Mod+Shift+CTRL+Left               { move-column-to-monitor-left; }
+    //Mod+Shift+CTRL+Right              { move-column-to-monitor-right; }
+    //Mod+Shift+CTRL+UP                 { move-column-to-monitor-up; }
+    //Mod+Shift+CTRL+Down               { move-column-to-monitor-down; }
+    
+    Mod+Shift+WheelScrollDown           cooldown-ms=150 { focus-workspace-down; }
+    Mod+Shift+WheelScrollUp             cooldown-ms=150 { focus-workspace-up; }
+    Mod+Shift+CTRL+WheelScrollDown      cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Shift+CTRL+WheelScrollUp        cooldown-ms=150 { move-column-to-workspace-up; }
+
+    Mod+CTRL+WheelScrollRight           { focus-column-right; }
+    Mod+CTRL+WheelScrollLeft            { focus-column-left; }
+    Mod+WheelScrollRight                { move-column-right; }
+    Mod+WheelScrollLeft           			{ move-column-left; }
+
+    Mod+WheelScrollDown                 { focus-column-right; }
+    Mod+WheelScrollUp                   { focus-column-left; }
+    Mod+CTRL+WheelScrollDown            { move-column-right; }
+    Mod+CTRL+WheelScrollUp              { move-column-left; }
+
+    Mod+W                               { focus-workspace-up; }
+    Mod+S                               { focus-workspace-down; }
+    Mod+CTRL+S                          { move-column-to-workspace-down; }
+    Mod+CTRL+W                          { move-column-to-workspace-up; }
+
+    // ─── Layout Controls ───
+    // Mod+z                            { expand-column-to-available-width; }
+    Alt+f                               { maximize-column; }
+    ALT+Backslash                       { center-column; }
+    Alt+Space                           { center-column; }
+    //Mod+Shift+z                       { center-visible-columns; }
+    Alt+q                               { set-column-width "-10%"; }
+    Alt+w                               { set-column-width "+10%"; }
+    //Mod+Shift+x                       { set-window-height "-10%"; }
+    //Mod+Shift+c                       { set-window-height "+10%"; }
+
+    // ─── Modes ───
+    Mod+Z                               { toggle-window-floating; }
+    Mod+Shift+Z                         { switch-focus-between-floating-and-tiling; }
+    Mod+F                               { fullscreen-window; }
+    // Shift+Space                      { toggle-column-tabbed-display; }
+
+    // ─── Screenshots and colorpicker ───
+    Mod+0                               { screenshot show-pointer=false; }
+    ALT+1                               { screenshot show-pointer=false; }
+    ALT+2                               { screenshot-screen show-pointer=false; }        
+    ALT+3                               { screenshot-window show-pointer=false; }
+    ALT+4                               { spawn "sh" "-c" "color=$(hyprpicker) && wl-copy $color && notify-send 'Color Picked' $color"; }
+    //Mod+Backspace                     allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; } //emergency fix
+
+    Mod+Shift+ESCAPE                    { quit; }
+    //Mod+Shift+P                       { power-off-monitors; }
+    Mod+TAB                             repeat=false { toggle-overview; }
+    Ctrl+Alt+P                          { spawn "fish" "-c" "321"; }
+    Ctrl+Alt+O                          { spawn "fish" "-c" "123"; }
+
+
+
+  	Mod+Space                           { switch-layout "next"; }
+
+
+
+    // ─── Additionals ───
+    Alt+X                               { spawn-sh "noctalia-shell ipc call media next"; }
+    Alt+Z                               { spawn-sh "noctalia-shell ipc call media previous"; }
+    Alt+C                               { spawn-sh "noctalia-shell ipc call media playPause"; }
+    Alt+S                               { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    //Alt+a                             { focus-column-first; }
+    //Alt+d                             { focus-column-last; }
+    //Alt+Ctrl+a                        { move-column-to-first; }
+    //Alt+Ctrl+d                        { move-column-to-last; }
+    Alt+E                               { switch-preset-column-width; }
+    Mod+T                               { spawn-sh "noctalia-shell ipc call wallpaper toggle"; }
+    Alt+A                               { focus-workspace 100; }
+    Alt+R                               { spawn "fish" "-c" "clip_archive"; }
+    Mod+B                               { spawn "sh" "-c" "kitty --single-instance --instance-group main fish -c b"; }
+    Alt+g                               { spawn "sh" "-c" "kitty --single-instance --instance-group main fish -c ff"; }
+    Mod+K                               { spawn "sh" "-c" "kitty --single-instance --instance-group main fish -c o"; }
+    Mod+3                               { spawn "sh" "-c" "kitty --single-instance --instance-group main fish -c yazi"; }
+}
