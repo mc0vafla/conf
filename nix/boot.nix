@@ -58,13 +58,14 @@
         efiSupport = true;
         device = "nodev";
         configurationLimit = 10;
+        
         extraEntries = ''
           menuentry "Void Linux" --class void --class gnu-linux --class gnu --class os {
               insmod part_gpt
               insmod btrfs
               search --no-floppy --fs-uuid --set=root 55e4c89d-496e-4470-82c0-54dd1079bb57
-              linux /boot/vmlinuz root=UUID=55e4c89d-496e-4470-82c0-54dd1079bb57 ro quiet
-              initrd /boot/initramfs.img
+              linux /boot/vmlinuz-6.18.36_1 root=UUID=55e4c89d-496e-4470-82c0-54dd1079bb57 ro quiet
+              initrd /boot/initramfs-6.18.36_1.img
           }
         '';
       };
