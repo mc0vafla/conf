@@ -43,21 +43,18 @@
     pinta
     transmission_4-gtk
     celluloid
-    ncdu
     file-roller
     baobab
     kittysay
     cava
     onefetch
     dix
-    fortune
   ];
 in {
   environment.systemPackages = with stable; [
     (papirus-icon-theme.override {color = "green";})
     wl-clipboard
     git
-    fzf
     fd
     lsd
     fastfetch
