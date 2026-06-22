@@ -63,7 +63,7 @@
       '';
 
       extraEntries = ''
-        menuentry "Void Linux" --class void --class gnu-linux --class gnu --class os {
+        menuentry "Void Linux (musl)" --class void --class gnu-linux --class gnu --class os {
             insmod part_gpt
             insmod btrfs
             search --no-floppy --fs-uuid --set=root a5f3cd0f-29a2-4208-84e4-aa6fa89243ed
