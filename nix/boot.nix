@@ -63,20 +63,20 @@
       '';
 
       extraEntries = ''
-        menuentry "Void Linux (musl) [p3]" --class void --class gnu-linux --class gnu --class os {
+        menuentry "Void Linux (musl)" --class void --class gnu-linux --class gnu --class os {
             insmod part_gpt
             insmod btrfs
             search --no-floppy --fs-uuid --set=root a5f3cd0f-29a2-4208-84e4-aa6fa89243ed
-            linux /@/boot/vmlinuz-6.18.36_1 root=UUID=a5f3cd0f-29a2-4208-84e4-aa6fa89243ed ro rootflags=subvol=@
-            initrd /@/boot/initramfs-6.18.36_1.img
+            linux /boot/vmlinuz root=UUID=a5f3cd0f-29a2-4208-84e4-aa6fa89243ed ro
+            initrd /boot/initramfs.img
         }
 
-        menuentry "Void Linux (glibc) [p5]" --class void --class gnu-linux --class gnu --class os {
+        menuentry "Void Linux (glibc)" --class void --class gnu-linux --class gnu --class os {
             insmod part_gpt
             insmod btrfs
             search --no-floppy --fs-uuid --set=root 25ceb031-52c0-41b1-b54e-902fe67ab4d8
-            linux /@/boot/vmlinuz-6.18.36_1 root=UUID=25ceb031-52c0-41b1-b54e-902fe67ab4d8 ro rootflags=subvol=@
-            initrd /@/boot/initramfs-6.18.36_1.img
+            linux /boot/vmlinuz root=UUID=25ceb031-52c0-41b1-b54e-902fe67ab4d8 ro
+            initrd /boot/initramfs.img
         }
       '';
     };
