@@ -62,9 +62,9 @@
           menuentry "Void Linux" --class void --class gnu-linux --class gnu --class os {
               insmod part_gpt
               insmod btrfs
-              search --no-floppy --fs-uuid --set=root 55e4c89d-496e-4470-82c0-54dd1079bb57
-              linux /boot/vmlinuz root=UUID=55e4c89d-496e-4470-82c0-54dd1079bb57 ro quiet
-              initrd /boot/initramfs.img
+              search --no-floppy --fs-uuid --set=root 3599aac9-3ffa-4900-ba58-015178e52b1f
+              linux /boot/vmlinuz-6.12-chops root=UUID=3599aac9-3ffa-4900-ba58-015178e52b1f ro quiet
+              initrd /boot/initramfs-6.12-chops.img
           }
         '';
       };
