@@ -48,7 +48,8 @@
     ];
 
     blacklistedKernelModules = ["sp5100_tco" "iTCO_wdt" "iTCO_vendor_support"];
-    grub = {
+
+    loader.grub = {
       enable = true;
       theme = lib.mkForce ./grub;
       efiSupport = true;
