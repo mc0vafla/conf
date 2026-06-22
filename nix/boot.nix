@@ -71,7 +71,6 @@
         }
       '';
     };
-  };
 
     initrd = {
       availableKernelModules = ["nvme" "ahci" "xor" "zstd"];
