@@ -48,34 +48,30 @@
     ];
 
     blacklistedKernelModules = ["sp5100_tco" "iTCO_wdt" "iTCO_vendor_support"];
-    loader = {
-      timeout = 3;
-      efi.canTouchEfiVariables = true;
-      systemd-boot.enable = false;
-      grub = {
-        enable = true;
-        theme = lib.mkForce ./grub;
-        efiSupport = true;
-        device = "nodev";
-        configurationLimit = 10;
-        extraConfig = ''
-          insmod video_bochs
-          insmod video_cirrus
-          insmod gfxterm
-          set gfxpayload=keep
-        '';
+    grub = {
+      enable = true;
+      theme = lib.mkForce ./grub;
+      efiSupport = true;
+      device = "nodev";
+      configurationLimit = 10;
+      extraConfig = ''
+        insmod video_bochs
+        insmod video_cirrus
+        insmod gfxterm
+        set gfxpayload=keep
+      '';
 
-        extraEntries = ''
-          menuentry "Void Linux" --class void --class gnu-linux --class gnu --class os {
-              insmod part_gpt
-              insmod btrfs
-              search --no-floppy --fs-uuid --set=root 3599aac9-3ffa-4900-ba58-015178e52b1f
-              linux /boot/vmlinuz-6.18.36_1 root=UUID=3599aac9-3ffa-4900-ba58-015178e52b1f ro
-              initrd /boot/initramfs-6.18.36_1.img
-          }
-        '';
-      };
+      extraEntries = ''
+        menuentry "Void Linux" --class void --class gnu-linux --class gnu --class os {
+            insmod part_gpt
+            insmod btrfs
+            search --no-floppy --fs-uuid --set=root a5f3cd0f-29a2-4208-84e4-aa6fa89243ed
+            linux /boot/vmlinuz-6.18.36_1 root=UUID=a5f3cd0f-29a2-4208-84e4-aa6fa89243ed ro
+            initrd /boot/initramfs-6.18.36_1.img
+        }
+      '';
     };
+  };
 
     initrd = {
       availableKernelModules = ["nvme" "ahci" "xor" "zstd"];
