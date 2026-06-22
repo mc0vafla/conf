@@ -58,12 +58,19 @@
         efiSupport = true;
         device = "nodev";
         configurationLimit = 10;
+        extraConfig = ''
+          insmod video_bochs
+          insmod video_cirrus
+          insmod gfxterm
+          set gfxpayload=keep
+        '';
+
         extraEntries = ''
           menuentry "Void Linux" --class void --class gnu-linux --class gnu --class os {
               insmod part_gpt
               insmod btrfs
               search --no-floppy --fs-uuid --set=root 3599aac9-3ffa-4900-ba58-015178e52b1f
-              linux /boot/vmlinuz-6.18.36_1 root=UUID=3599aac9-3ffa-4900-ba58-015178e52b1f ro quiet
+              linux /boot/vmlinuz-6.18.36_1 root=UUID=3599aac9-3ffa-4900-ba58-015178e52b1f ro
               initrd /boot/initramfs-6.18.36_1.img
           }
         '';
