@@ -62,13 +62,12 @@
           menuentry "Void Linux" --class void --class gnu-linux --class gnu --class os {
               insmod part_gpt
               insmod btrfs
-              search --no-floppy --fs-uuid --set=root 3599aac9-3ffa-4900-ba58-015178e52b1f
-              linux /boot/vmlinuz-6.12-chops root=UUID=3599aac9-3ffa-4900-ba58-015178e52b1f ro quiet
-              initrd /boot/initramfs-6.12-chops.img
+              search --no-floppy --label --set=root void
+              linux /boot/vmlinuz-6.18.36_1 root=LABEL=void-root ro quiet
+              initrd /boot/initramfs-6.18.36_1.img
           }
         '';
       };
-    };
 
     initrd = {
       availableKernelModules = ["nvme" "ahci" "xor" "zstd"];
