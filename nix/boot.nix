@@ -72,7 +72,7 @@
             linux /boot/vmlinuz-6.18.36_1 root=UUID=ff0d0760-b403-4485-b08a-47ba9d060715 ro
             initrd /boot/initramfs-6.18.36_1.img
         }
-        menuentry "Chimera Linux (ZFS via EFI Boot)" --class chimera --class gnu-linux --class os {
+        menuentry "Chimera Linux" --class chakra --class gnu-linux --class os {
             insmod part_gpt
             insmod fat
             search --no-floppy --fs-uuid --set=root 706A-9652
