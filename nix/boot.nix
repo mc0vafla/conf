@@ -70,12 +70,12 @@
             linux /boot/vmlinuz-6.18.36_1 root=UUID=ff0d0760-b403-4485-b08a-47ba9d060715 ro
             initrd /boot/initramfs-6.18.36_1.img
         }
-        menuentry "Chimera Linux" --class debian --class gnu-linux --class gnu --class os {
+        menuentry "Chimera Linux (ZFS)" --class chakra --class gnu-linux --class gnu --class os {
             insmod part_gpt
-            insmod btrfs
-            search --no-floppy --fs-uuid --set=root 444c174f-d6fd-42ef-8320-a0333808604c
-            linux /boot/vmlinuz root=UUID=444c174f-d6fd-42ef-8320-a0333808604c rw quiet
-            initrd /boot/initrd.img
+            insmod zfs
+            search --no-floppy --label rpool --set=root
+            linux /ROOT/chimera@/boot/vmlinuz root=zfs:rpool/ROOT/chimera bootfs=rpool/ROOT/chimera rw quiet
+            initrd /ROOT/chimera@/boot/initrd.img
         }
       '';
     };
