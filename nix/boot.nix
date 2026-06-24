@@ -4,6 +4,8 @@
   ...
 }: {
   boot = {
+    supportedFilesystems = [ "zfs" ];
+
     tmp = {
       useTmpfs = true;
       tmpfsSize = "8G";
@@ -70,12 +72,12 @@
             linux /boot/vmlinuz-6.18.36_1 root=UUID=ff0d0760-b403-4485-b08a-47ba9d060715 ro
             initrd /boot/initramfs-6.18.36_1.img
         }
-        menuentry "Chimera Linux (ZFS)" --class chakra --class gnu-linux --class gnu --class os {
+        menuentry "Chimera Linux (ZFS via EFI Boot)" --class chimera --class gnu-linux --class os {
             insmod part_gpt
-            insmod zfs
-            search --no-floppy --label rpool --set=root
-            linux /ROOT/chimera@/boot/vmlinuz root=zfs:rpool/ROOT/chimera bootfs=rpool/ROOT/chimera rw quiet
-            initrd /ROOT/chimera@/boot/initrd.img
+            insmod fat
+            search --no-floppy --fs-uuid --set=root 706A-9652
+            linux /chimera/vmlinuz root=zfs:rpool/ROOT/chimera bootfs=rpool/ROOT/chimera rw quiet
+            initrd /chimera/initrd.img
         }
       '';
     };
@@ -95,4 +97,6 @@
       install wdat_wdt /bin/false
     '';
   };
+
+  networking.hostId = "8425e349";
 }
