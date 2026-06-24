@@ -5,6 +5,7 @@
 }: {
   boot = {
     supportedFilesystems = [ "zfs" ];
+    boot.zfs.forceImportRoot.enable = false;
 
     tmp = {
       useTmpfs = true;
