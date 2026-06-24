@@ -74,6 +74,7 @@ in {
     tre-command
     xrdb
     xsetroot
+    zfs
   ];
 
   users.users.mark = {
