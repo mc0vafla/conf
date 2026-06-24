@@ -5,7 +5,7 @@
 }: {
   boot = {
     supportedFilesystems = [ "zfs" ];
-
+    zfs.forceImportRoot = false;
     tmp = {
       useTmpfs = true;
       tmpfsSize = "8G";
