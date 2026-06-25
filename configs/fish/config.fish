@@ -17,6 +17,10 @@ set -gx PIPEWIRE_LATENCY "512/48000"
 set -gx QT_QPA_PLATFORMTHEME qt6ct
 set -gx STEAM_RUNTIME_PREFER_HOST_LIBRARIES 0
 
+function chimer
+  sudo zpool import -f -R /mnt/chimera rpool
+end
+
 function asciitwall 
     if test (count $argv) -lt 4
         echo "Not enough arguments"
