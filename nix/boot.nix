@@ -66,11 +66,11 @@
       '';
 
       extraEntries = ''
-        menuentry "Chimera Linux" --class chimera --class gnu-linux --class os {
+        menuentry "Chimera Linux" --class chakra --class gnu-linux --class os {
             insmod part_gpt
             insmod fat
             search --no-floppy --fs-uuid --set=root 706A-9652
-            linux /chimera/vmlinuz root=zfs:rpool/ROOT/chimera bootfs=rpool/ROOT/chimera rw quiet
+            linux /chimera/vmlinuz root=zfs:rpool/ROOT rw quiet
             initrd /chimera/initrd.img
         }
       '';
