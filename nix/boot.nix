@@ -73,14 +73,6 @@
             linux /chimera/vmlinuz root=ZFS=rpool/ROOT zfs=rpool/ROOT rw quiet
             initrd /chimera/initrd.img
         }
-        
-        menuentry "FreeBSD 15.1" --class freebsd {
-              insmod part_gpt
-              insmod fat
-              insmod chain
-              search --no-floppy --fs-uuid --set=root 706A-9652
-              chainloader /EFI/freebsd/loader.efi
-          }
       '';
     };
 
