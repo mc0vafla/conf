@@ -70,7 +70,7 @@
             insmod part_gpt
             insmod fat
             search --no-floppy --fs-uuid --set=root 706A-9652
-            linux /chimera/vmlinuz root=zfs:rpool/ROOT rw quiet
+            linux /chimera/vmlinuz root=ZFS=rpool/ROOT zfs=rpool/ROOT rw quiet
             initrd /chimera/initrd.img
         }
       '';
