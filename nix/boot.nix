@@ -73,15 +73,13 @@
             linux /chimera/vmlinuz root=ZFS=rpool/ROOT zfs=rpool/ROOT rw quiet
             initrd /chimera/initrd.img
         }
-      '';
-      extraEntries = ''
         menuentry "Debian" --class debian --class gnu-linux {
-          insmod btrfs
-          search --no-floppy --fs-uuid --set=root 8d7aecd6-b818-4a57-8e9e-46c3ba9f4434
-          linux /boot/vmlinuz root=UUID=8d7aecd6-b818-4a57-8e9e-46c3ba9f4434 rw rootflags=subvol=@rootfs quiet
-          initrd /boot/initrd.img
-      }
-    '';
+            insmod btrfs
+            search --no-floppy --fs-uuid --set=root 8d7aecd6-b818-4a57-8e9e-46c3ba9f4434
+            linux /boot/vmlinuz root=UUID=8d7aecd6-b818-4a57-8e9e-46c3ba9f4434 rw rootflags=subvol=@rootfs quiet
+            initrd /boot/initrd.img
+        }
+      '';
     };
 
     initrd = {
