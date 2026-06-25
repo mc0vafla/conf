@@ -74,12 +74,13 @@
             initrd /chimera/initrd.img
         }
         
-        menuentry "FreeBSD" --class freebsd --class bsd --class os {
-            insmod part_gpt
-            insmod fat
-            search --no-floppy --fs-uuid --set=root 706A-9652
-            chainloader /EFI/freebsd/loader.efi
-        }
+        menuentry "FreeBSD 15.1" --class freebsd {
+              insmod part_gpt
+              insmod fat
+              insmod chain
+              search --no-floppy --fs-uuid --set=root 706A-9652
+              chainloader /EFI/freebsd/loader.efi
+          }
       '';
     };
 
