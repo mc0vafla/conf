@@ -28,6 +28,7 @@
   };
 
   security.rtkit.enable = true;
+  security.polkit.enable = true;
   services.xserver.videoDrivers = ["nvidia"];
   powerManagement.cpuFreqGovernor = "performance";
 }
