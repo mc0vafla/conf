@@ -19,15 +19,15 @@ set -gx STEAM_RUNTIME_PREFER_HOST_LIBRARIES 0
 
 function update-chimera-kernel
     set LATEST_VER (ls /boot/vmlinuz-* | sort -V | tail -n 1 | string replace '/boot/vmlinuz-' '')
-    doas ln -sf /boot/vmlinuz-$LATEST_VER /boot/chimera/vmlinuz-latest
-    doas ln -sf /boot/initrd.img-$LATEST_VER /boot/chimera/initrd-latest.img
+    sudo ln -sf /boot/vmlinuz-$LATEST_VER /boot/chimera/vmlinuz-latest
+    sudo ln -sf /boot/initrd.img-$LATEST_VER /boot/chimera/initrd-latest.img
     echo "Линки обновлены на версию $LATEST_VER"
 end
 
 function mount-and-update-chimera
     if not mount | grep -q "rpool/ROOT"
         echo "Датасет не смонтирован. Монтирую..."
-        doas zfs mount -a
+        sudo zfs mount -a
     end
     set CHIMERA_BOOT_PATH "/mnt/chimera/mnt/my_chimera_root/boot"
     set GRUB_BOOT_PATH "/boot/chimera"
