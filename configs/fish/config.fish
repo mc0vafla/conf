@@ -17,25 +17,30 @@ set -gx PIPEWIRE_LATENCY "512/48000"
 set -gx QT_QPA_PLATFORMTHEME qt6ct
 set -gx STEAM_RUNTIME_PREFER_HOST_LIBRARIES 0
 
-function update-chimera-kernel
-    set LATEST_VER (ls /boot/vmlinuz-* | sort -V | tail -n 1 | string replace '/boot/vmlinuz-' '')
-    sudo ln -sf /boot/vmlinuz-$LATEST_VER /boot/chimera/vmlinuz-latest
-    sudo ln -sf /boot/initrd.img-$LATEST_VER /boot/chimera/initrd-latest.img
-    echo "Линки обновлены на версию $LATEST_VER"
-end
-
 function mount-and-update-chimera
     if not mount | grep -q "rpool/ROOT"
-        echo "Датасет не смонтирован. Монтирую..."
+        echo "Монтирую датасет..."
         sudo zfs mount -a
     end
+
     set CHIMERA_BOOT_PATH "/mnt/chimera/mnt/my_chimera_root/boot"
     set GRUB_BOOT_PATH "/boot/chimera"
-    set LATEST_VER (ls $CHIMERA_BOOT_PATH/vmlinuz-* | sort -V | tail -n 1 | string replace "$CHIMERA_BOOT_PATH/vmlinuz-" "")
+    set LATEST_VER (ls $CHIMERA_BOOT_PATH/vmlinuz-* 2>/dev/null | sort -V | tail -n 1 | string replace "$CHIMERA_BOOT_PATH/vmlinuz-" "")
+    
+    if test -z "$LATEST_VER"
+        echo "Ошибка: ядро не найдено в $CHIMERA_BOOT_PATH"
+        return 1
+    end
+    echo "Найдено ядро версии: $LATEST_VER"
     sudo mkdir -p $GRUB_BOOT_PATH
-    sudo ln -sf $CHIMERA_BOOT_PATH/vmlinuz-$LATEST_VER $GRUB_BOOT_PATH/vmlinuz-latest
-    sudo ln -sf $CHIMERA_BOOT_PATH/initrd.img-$LATEST_VER $GRUB_BOOT_PATH/initrd-latest.img
-    echo "Chimera ядро $LATEST_VER успешно привязано к /boot/chimera/!"
+    sudo rm -f $GRUB_BOOT_PATH/vmlinuz-latest $GRUB_BOOT_PATH/initrd-latest.img
+    
+    if sudo ln -sf $CHIMERA_BOOT_PATH/vmlinuz-$LATEST_VER $GRUB_BOOT_PATH/vmlinuz-latest && \
+       sudo ln -sf $CHIMERA_BOOT_PATH/initrd.img-$LATEST_VER $GRUB_BOOT_PATH/initrd-latest.img
+       echo "Успешно привязано!"
+    else
+       echo "Ошибка при создании линков. Проверьте права на /boot"
+    end
 end
 
 function unchimer
