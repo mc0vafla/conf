@@ -95,5 +95,5 @@
   };
 
   networking.hostId = "8425e349";
-  environment.systemPackages = with pkgs; [zfs-stats nvme-cli];
+  environment.systemPackages = with pkgs; [zfs nvme-cli];
 }
