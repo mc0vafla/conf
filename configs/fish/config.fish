@@ -24,6 +24,20 @@ function update-chimera-kernel
     echo "Линки обновлены на версию $LATEST_VER"
 end
 
+function mount-and-update-chimera
+    if not mount | grep -q "rpool/ROOT"
+        echo "Датасет не смонтирован. Монтирую..."
+        doas zfs mount -a
+    end
+    set CHIMERA_BOOT_PATH "/mnt/chimera/mnt/my_chimera_root/boot"
+    set GRUB_BOOT_PATH "/boot/chimera"
+    set LATEST_VER (ls $CHIMERA_BOOT_PATH/vmlinuz-* | sort -V | tail -n 1 | string replace "$CHIMERA_BOOT_PATH/vmlinuz-" "")
+    sudo mkdir -p $GRUB_BOOT_PATH
+    sudo ln -sf $CHIMERA_BOOT_PATH/vmlinuz-$LATEST_VER $GRUB_BOOT_PATH/vmlinuz-latest
+    sudo ln -sf $CHIMERA_BOOT_PATH/initrd.img-$LATEST_VER $GRUB_BOOT_PATH/initrd-latest.img
+    echo "Chimera ядро $LATEST_VER успешно привязано к /boot/chimera/!"
+end
+
 function unchimer
   sudo zpool export rpool
 end
