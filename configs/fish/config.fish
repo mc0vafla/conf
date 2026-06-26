@@ -22,24 +22,21 @@ function mount-and-update-chimera
         echo "Монтирую датасет..."
         sudo zfs mount -a
     end
-
     set CHIMERA_BOOT_PATH "/mnt/chimera/mnt/my_chimera_root/boot"
     set GRUB_BOOT_PATH "/boot/chimera"
-    set LATEST_VER (ls $CHIMERA_BOOT_PATH/vmlinuz-* 2>/dev/null | grep "^$CHIMERA_BOOT_PATH/vmlinuz-" | sort -V | tail -n 1 | string replace "$CHIMERA_BOOT_PATH/vmlinuz-" "")
+    set LATEST_KERNEL (ls -1 $CHIMERA_BOOT_PATH/vmlinuz-* | sort -V | tail -n 1)
     
-    if test -z "$LATEST_VER"
-        echo "Ошибка: ядро в $CHIMERA_BOOT_PATH не найдено."
+    if test -z "$LATEST_KERNEL"
+        echo "Ошибка: ядро не найдено в $CHIMERA_BOOT_PATH"
         return 1
     end
-    echo "Найдено ядро Chimera версии: $LATEST_VER"
+    set LATEST_VER (basename $LATEST_KERNEL | string replace 'vmlinuz-' '')
+    echo "Найдено ядро версии: $LATEST_VER"
+    sudo mount -o remount,rw /boot 2>/dev/null
     sudo mkdir -p $GRUB_BOOT_PATH
-    sudo rm -f $GRUB_BOOT_PATH/vmlinuz-latest $GRUB_BOOT_PATH/initrd-latest.img
-    if sudo ln -sf $CHIMERA_BOOT_PATH/vmlinuz-$LATEST_VER $GRUB_BOOT_PATH/vmlinuz-latest && \
-       sudo ln -sf $CHIMERA_BOOT_PATH/initrd.img-$LATEST_VER $GRUB_BOOT_PATH/initrd-latest.img
-       echo "Успешно привязано к $GRUB_BOOT_PATH"
-    else
-       echo "Ошибка при записи в /boot. Проверьте: mount | grep /boot"
-    end
+    sudo ln -sf $CHIMERA_BOOT_PATH/vmlinuz-$LATEST_VER $GRUB_BOOT_PATH/vmlinuz-latest
+    sudo ln -sf $CHIMERA_BOOT_PATH/initrd.img-$LATEST_VER $GRUB_BOOT_PATH/initrd-latest.img
+    echo "Успешно обновлено: $GRUB_BOOT_PATH/vmlinuz-latest -> vmlinuz-$LATEST_VER"
 end
 
 function unchimer
