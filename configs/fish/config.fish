@@ -19,24 +19,22 @@ set -gx STEAM_RUNTIME_PREFER_HOST_LIBRARIES 0
 
 function mount-and-update-chimera
     if not mount | grep -q "rpool/ROOT"
-        echo "Монтирую датасет..."
         sudo zfs mount -a
     end
     set CHIMERA_BOOT_PATH "/mnt/chimera/mnt/my_chimera_root/boot"
     set GRUB_BOOT_PATH "/boot/chimera"
-    set LATEST_KERNEL (ls -1 $CHIMERA_BOOT_PATH/vmlinuz-* | sort -V | tail -n 1)
-    
+    set LATEST_KERNEL (find $CHIMERA_BOOT_PATH -maxdepth 1 -name "vmlinuz-7.*" | sort -V | tail -n 1)
     if test -z "$LATEST_KERNEL"
-        echo "Ошибка: ядро не найдено в $CHIMERA_BOOT_PATH"
+        echo "Ошибка: ядро 7.x не найдено в $CHIMERA_BOOT_PATH"
         return 1
     end
-    set LATEST_VER (basename $LATEST_KERNEL | string replace 'vmlinuz-' '')
-    echo "Найдено ядро версии: $LATEST_VER"
-    sudo mount -o remount,rw /boot 2>/dev/null
+    set VERSION (string replace "$CHIMERA_BOOT_PATH/vmlinuz-" "" $LATEST_KERNEL)
+    echo "Найдено ядро версии: $VERSION"
     sudo mkdir -p $GRUB_BOOT_PATH
-    sudo ln -sf $CHIMERA_BOOT_PATH/vmlinuz-$LATEST_VER $GRUB_BOOT_PATH/vmlinuz-latest
-    sudo ln -sf $CHIMERA_BOOT_PATH/initrd.img-$LATEST_VER $GRUB_BOOT_PATH/initrd-latest.img
-    echo "Успешно обновлено: $GRUB_BOOT_PATH/vmlinuz-latest -> vmlinuz-$LATEST_VER"
+    sudo rm -f $GRUB_BOOT_PATH/vmlinuz-latest $GRUB_BOOT_PATH/initrd-latest.img
+    sudo ln -sf $CHIMERA_BOOT_PATH/vmlinuz-$VERSION $GRUB_BOOT_PATH/vmlinuz-latest
+    sudo ln -sf $CHIMERA_BOOT_PATH/initrd.img-$VERSION $GRUB_BOOT_PATH/initrd-latest.img
+    echo "Готово! Ссылка указывает на $VERSION"
 end
 
 function unchimer
