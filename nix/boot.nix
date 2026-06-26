@@ -7,11 +7,6 @@
     supportedFilesystems = ["zfs"];
     zfs.forceImportRoot = false;
     zfs.forceImportAll = true;
-    services.zfs = {
-      autoScrub.enable = true;
-      trim.enable = true;
-    };
-
     tmp = {
       useTmpfs = true;
       tmpfsSize = "8G";
