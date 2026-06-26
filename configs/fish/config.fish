@@ -17,6 +17,13 @@ set -gx PIPEWIRE_LATENCY "512/48000"
 set -gx QT_QPA_PLATFORMTHEME qt6ct
 set -gx STEAM_RUNTIME_PREFER_HOST_LIBRARIES 0
 
+function update-chimera-kernel
+    set LATEST_VER (ls /boot/vmlinuz-* | sort -V | tail -n 1 | string replace '/boot/vmlinuz-' '')
+    doas ln -sf /boot/vmlinuz-$LATEST_VER /boot/chimera/vmlinuz-latest
+    doas ln -sf /boot/initrd.img-$LATEST_VER /boot/chimera/initrd-latest.img
+    echo "Линки обновлены на версию $LATEST_VER"
+end
+
 function unchimer
   sudo zpool export rpool
 end

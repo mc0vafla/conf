@@ -4,8 +4,13 @@
   ...
 }: {
   boot = {
-    supportedFilesystems = [ "zfs" ];
-    zfs.forceImportRoot.enable = false;
+    supportedFilesystems = ["zfs"];
+    zfs.forceImportRoot = false;
+    zfs.forceImportAll = true;
+    services.zfs = {
+      autoScrub.enable = true;
+      trim.enable = true;
+    };
 
     tmp = {
       useTmpfs = true;
@@ -62,6 +67,7 @@
         insmod video_bochs
         insmod video_cirrus
         insmod gfxterm
+        insmod zfs
         set gfxpayload=keep
       '';
 
@@ -69,14 +75,16 @@
         menuentry "Chimera Linux" --class chakra --class gnu-linux --class os {
             insmod part_gpt
             insmod fat
+            insmod zfs
             search --no-floppy --fs-uuid --set=root 706A-9652
-            linux /chimera/vmlinuz root=ZFS=rpool/ROOT zfs=rpool/ROOT rw quiet
-            initrd /chimera/initrd.img
+            linux /chimera/vmlinuz-latest root=ZFS=rpool/ROOT zfs=rpool/ROOT rw quiet
+            initrd /chimera/initrd-latest.img
         }
       '';
     };
 
     initrd = {
+      supportedFilesystems = ["zfs"];
       availableKernelModules = ["nvme" "ahci" "xor" "zstd"];
       compressor = "zstd";
       compressorArgs = ["-1"];
@@ -93,4 +101,5 @@
   };
 
   networking.hostId = "8425e349";
+  environment.systemPackages = with pkgs; [zfs-stats nvme-cli];
 }
