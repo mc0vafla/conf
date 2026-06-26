@@ -84,7 +84,7 @@
       verbose = false;
     };
 
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages;
     extraModprobeConfig = ''
       options iwlwifi power_save=0
       blacklist wdat_wdt
